@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+</head>
+<body>
+  <button id="checkout" onClick="checkout()">Check out</button>
+  <script type="text/javascript">
+const paymentMethods = [{ supportedMethods: 'basic-card' }];
+const paymentDetails = { total: { label: 'Total', amount: { currency: 'USD', value : '22.15' } } };
+const checkout = () => {
+  const request = new PaymentRequest(paymentMethods, paymentDetails, {});
+  request.show().then(response => {
+    fetch('http://localhost:8000/', { method: 'post', body: JSON.stringify(response) })
+    response.complete('success');
+  });
+}
+  </script>
+</body>
+</html>
