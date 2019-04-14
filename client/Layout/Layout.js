@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 
 import Header from './Header';
-import Menu from './Menu';
 
 
 const theme = createMuiTheme({
@@ -28,22 +27,19 @@ const theme = createMuiTheme({
 });
 
 const styles = {
-  container: {
+  content: {
     maxWidth: 800,
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '80px auto 0',
   },
 };
 
 const Layout = ({ children, classes }) => (
   <MuiThemeProvider theme={theme}>
-    <div className={classes.container}>
-      <Header onClickHamburger={() => this.setState({ isDrawerOpen: true, })} />
-      <Menu
-        isOpen={false}
-        onClose={() => this.setState({ isDrawerOpen: false, })}
-      />
-      <div className={classes.content}>
-        {children}
-      </div>
+    <Header />
+    <div className={classes.content}>
+      {children}
     </div>
   </MuiThemeProvider>
 );

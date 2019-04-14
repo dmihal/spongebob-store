@@ -1,25 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 
+const style = {
+  bar: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    zIndex: 1000,
+  },
+  toolbar: {
+    flexBasis: 800,
+  },
+  title: {
+    flexGrow: 1,
+    textDecoration: 'none',
+  },
+};
 
-const Header = ({ onClickHamburger }) => (
-  <AppBar>
-    <Toolbar>
-      <Hidden mdUp implementation="css">
-        <IconButton color="inherit" aria-label="Menu" onClick={onClickHamburger}>
-          <MenuIcon />
-        </IconButton>
-      </Hidden>
-
-      <Typography variant="h6" color="inherit" component={Link} to="/">
+const Header = ({ classes }) => (
+  <AppBar className={classes.bar}>
+    <Toolbar className={classes.toolbar}>
+      <Typography variant="h6" color="inherit" component={Link} to="/" className={classes.title}>
         Store
       </Typography>
 
@@ -32,7 +40,7 @@ const Header = ({ onClickHamburger }) => (
 );
 
 Header.propTypes = {
-  onClickHamburger: PropTypes.func,
+  classes: PropTypes.object.isRequired,
 };
 
-export default Header;
+export default withStyles(style)(Header);
