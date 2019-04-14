@@ -16,8 +16,8 @@ const data = () => {
 const Home = ({ products }) => (
   <Grid container>
     {products.map(product => (
-      <Grid item sm={6}>
-        <ProductCard product={product} key={product._id} />
+      <Grid item sm={6} key={product._id}>
+        <ProductCard product={product} />
       </Grid>
     ))}
   </Grid>

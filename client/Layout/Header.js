@@ -32,7 +32,7 @@ const Header = ({ classes }) => (
       </Typography>
 
 
-      <IconButton color="inherit">
+      <IconButton color="inherit" component={Link} to="/cart">
         <ShoppingCart />
       </IconButton>
     </Toolbar>
