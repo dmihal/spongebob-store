@@ -29,8 +29,6 @@ const theme = createMuiTheme({
 const styles = {
   content: {
     maxWidth: 800,
-    display: 'flex',
-    flexDirection: 'row',
     margin: '80px auto 0',
   },
 };

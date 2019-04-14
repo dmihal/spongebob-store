@@ -17,7 +17,7 @@ const styles = {
 
 const ProductCard = ({ product, classes }) => (
   <Card className={classes.card}>
-    <CardActionArea component={Link} to={`/product/${product._id}`}>
+    <CardActionArea component={Link} to={`/details/${product._id}`}>
       <CardMedia
         component="img"
         className={classes.media}
