@@ -32,6 +32,9 @@ Meteor.methods({
 
     const orderId = Order.insert({
       items: cart.map(item => ({ product: item._id, quantity: item.quantity })),
+      subtotal: cart
+        .map(item => Product.findOne(item._id).price * item.quantity)
+        .reduce((a, b) => a + b, 0),
     });
 
     return {
