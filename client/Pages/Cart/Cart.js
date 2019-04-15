@@ -17,8 +17,13 @@ const Cart = ({ items }) => {
   const [loading, setLoading] = useState(false);
   const _startCheckout = async () => {
     setLoading(true);
-    const checkout = await startCheckout();
-    checkout.show();
+    try {
+      const checkout = await startCheckout();
+      await checkout.show();
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
   };
   return (
     <div>

@@ -39,4 +39,24 @@ Meteor.methods({
       paymentDetails: orderToPaymentDetails(Order.findOne(orderId)),
     };
   },
+  getShippingOptions(address) {
+    if (!address.country === 'US') {
+      return [];
+    }
+    return [
+      {
+        id: 'economy',
+        label: 'Free Economy Shipping (5-7 Days)',
+        amount: { currency: 'USD', value: '0.00' },
+      }, {
+        id: 'express',
+        label: 'Express Shipping (2-3 Days)',
+        amount: { currency: 'USD', value: '5.00' },
+      }, {
+        id: 'next-day',
+        label: 'Next Day Delivery',
+        amount: { currency: 'USD', value: '12.00' },
+      },
+    ];
+  },
 });
