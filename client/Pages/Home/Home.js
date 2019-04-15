@@ -14,7 +14,7 @@ const data = () => {
 };
 
 const Home = ({ products }) => (
-  <Grid container>
+  <Grid container spacing={16}>
     {products.map(product => (
       <Grid item sm={6} key={product._id}>
         <ProductCard product={product} />

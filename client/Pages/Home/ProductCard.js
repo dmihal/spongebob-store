@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   media: {
     objectFit: 'cover',
-    height: 200,
+    height: 250,
   }
 };
 
