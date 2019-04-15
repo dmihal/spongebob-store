@@ -1,2 +1,2 @@
-import { Meteor } from 'meteor/meteor';
+import './methods/order';
 import './models';

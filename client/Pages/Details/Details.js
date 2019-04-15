@@ -41,7 +41,7 @@ const Details = ({ product, cartItem, classes }) => {
           id="quantity"
           label="Quantity"
           value={quantity}
-          onChange={e => setQuantity(e.target.value)}
+          onChange={e => setQuantity(parseInt(e.target.value))}
           type="number"
           InputLabelProps={{
             shrink: true,
