@@ -4,6 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { Product, ShoppingCart } from '/client/models';
 
@@ -36,7 +37,20 @@ const Details = ({ product, cartItem, classes }) => {
         {cartItem && (
           <Typography>In cart: {cartItem.quantity}</Typography>
         )}
-        <input type="number" value={quantity} min="0" onChange={e => setQuantity(e.target.value)} />
+        <TextField
+          id="quantity"
+          label="Quantity"
+          value={quantity}
+          onChange={e => setQuantity(e.target.value)}
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            min: '0',
+          }}
+          margin="normal"
+        />
         <Button onClick={() => ShoppingCart.upsert(product._id, { quantity, _id: product._id })}>
           {cartItem ? 'Update cart' : 'Add to cart'}
         </Button>
