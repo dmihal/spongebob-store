@@ -1,0 +1,30 @@
+version: '3'
+services:
+  store:
+    build:
+      context: ./
+    links:
+      - mongo
+    environment:
+      - ROOT_URL=http://spongebob.dmihal.com
+      - PORT=80
+      - MONGO_URL=mongodb://mongo:27017/meteor
+      #- MONGO_URL=mongodb://minuteman:abcdefg@cluster0-shard-00-00-v4los.mongodb.net:27017,cluster0-shard-00-01-v4los.mongodb.net:27017,cluster0-shard-00-02-v4los.mongodb.net:27017/meteor?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
+      #- MONGO_OPLOG_URL=mongodb://minuteman_oplog:abcdefgh@cluster0-shard-00-00-v4los.mongodb.net:27017,cluster0-shard-00-01-v4los.mongodb.net:27017,cluster0-shard-00-02-v4los.mongodb.net:27017/local?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
+
+  mongo:
+    image: mongo:latest
+    command: mongod --storageEngine=wiredTiger
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - store
+    restart: always
+    environment:
+      DOMAINS: 'spongebob.dmihal.com -> http://store'
+      STAGE: 'production'
+      WEBSOCKET: 'true'
